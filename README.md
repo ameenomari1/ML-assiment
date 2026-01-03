@@ -1,154 +1,39 @@
-#  Instacart Market Basket Analysis & Prediction
+# Instacart Market Basket Analysis & Prediction
 
-##  Project Overview
-This project applies **Machine Learning classification and regression models** to analyze and predict customer reorder behavior using the **Instacart Market Basket dataset**.
+## Summary
+This project analyzes customer purchasing behavior using the **Instacart Market Basket dataset**. The goal is to predict:
 
-The project focuses on two main tasks:
-- **Binary Classification:** Predict whether a user will reorder a specific product.
-- **Regression:** Predict the total number of times a user will reorder products.
+1. Classification Task – whether a specific product will be reordered by a user (binary classification).  
+2. Regression Task – the total number of times a user will reorder products (count regression).
 
-Multiple models were evaluated, with **XGBoost** emerging as the best-performing approach for both tasks.
+Key steps include:
+- Exploratory Data Analysis (EDA): temporal patterns, missing values, outliers, class imbalance.  
+- Preprocessing and Feature Engineering: user-level, product-level, and user-product interaction features; non-linear transformations.  
+- Model Selection and Tuning: linear models, tree-based models, XGBoost.  
+- Evaluation: ROC AUC (classification), R² & MAE (regression).  
+- Explainability and Robustness: SHAP, feature importance, sensitivity to noise and outliers.  
 
----
+Final Models:
+- Classification: Tuned XGBoost (ROC AUC ≈ 0.838)  
+- Regression: Baseline XGBoost (R² ≈ 0.832)  
 
-##  Objectives
-- Understand customer purchasing behavior
-- Handle class imbalance and high-cardinality data
-- Engineer meaningful behavioral features
-- Compare linear, tree-based, and boosting models
-- Evaluate model robustness and explainability
+Project Contributors:
+Project Contributors and Roles:
 
----
-
-##  Dataset Description
-The dataset consists of multiple relational tables:
-- `orders`
-- `products`
-- `aisles`
-- `departments`
-- `order_products__prior`
-- `order_products__train`
-
-Key challenges include:
-- Severe class imbalance in the `reordered` target
-- Temporal dependency between orders
-- Non-linear user–product interactions
+- Ameen – Responsible for Exploratory Data Analysis (EDA) and data merging/preprocessing and presention 
+- Mustafa – Responsible for Feature Engineering and report 
+- Both Ameen and Mustafa – Collaborated on Task A (Classification) and Task B (Regression)
 
 ---
 
-##  Technologies & Libraries
-- Python  
-- Pandas, NumPy  
-- Scikit-learn  
-- XGBoost  
-- Imbalanced-learn (SMOTE, RandomUnderSampler)  
-- Statsmodels  
-- SHAP  
-- Matplotlib  
-- Google Colab  
+## Run Instructions on Google Colab
 
----
+### 1. Open the Notebook
+- Open Google Colab: [https://colab.research.google.com](https://colab.research.google.com)  
+- Upload or open your main notebook file (e.g., `Instacart_Analysis.ipynb`).
 
-##  Project Workflow
-1. Data loading and preprocessing  
-2. Exploratory Data Analysis (EDA)  
-3. Feature engineering (user, product, interaction features)  
-4. Handling class imbalance (SMOTE & under-sampling)  
-5. Model training and evaluation  
-6. Hyperparameter tuning using TimeSeriesSplit  
-7. Model explainability (SHAP)  
-8. Robustness and statistical testing  
-
----
-
-## ▶ How to Run the Project (Google Colab)
-
-1. Open the notebook in **Google Colab**
-2. Mount Google Drive:
-   ```python
-   from google.colab import drive
-   drive.mount('/content/drive')
-   ```
-3. Ensure the dataset files are placed inside your Drive directory
-4. Run the notebook cells **in order**
-5. Model outputs, metrics, and visualizations will be generated automatically
-
----
-
-##  Models Implemented
-
-### Classification
-- Logistic Regression  
-- SVM (Linear)  
-- K-Nearest Neighbors  
-- Decision Tree  
-- Random Forest  
-- **XGBoost (Best Performer)**  
-
-### Regression
-- Ridge, Lasso, ElasticNet  
-- KNN Regressor  
-- Decision Tree Regressor  
-- Random Forest Regressor  
-- **XGBoost Regressor (Best Performer)**  
-
----
-
-##  Evaluation Metrics
-
-### Classification
-- Accuracy  
-- Precision  
-- Recall  
-- F1-Score  
-- ROC AUC  
-
-### Regression
-- MAE  
-- RMSE  
-- R² Score  
-
-Time-aware validation was applied using **TimeSeriesSplit** to prevent data leakage.
-
----
-
-##  Model Explainability
-- Feature importance analysis
-- SHAP values for global and local interpretability
-- Behavioral insights derived from top predictive features
-
----
-
-##  Robustness & Statistical Analysis
-- Gaussian noise sensitivity testing
-- Outlier injection stress testing
-- Learning curve analysis (data sparsity)
-- Breusch–Pagan test for heteroscedasticity
-
----
-
-##  Key Findings
-- Tree-based and boosting models significantly outperform linear models
-- XGBoost captures complex, non-linear user behavior effectively
-- The model is robust to small noise but sensitive to extreme outliers
-- User history is the strongest predictor of future reorders
-
----
-
-##  Limitations
-- SMOTE is computationally expensive for large datasets
-- Under-sampling may discard potentially useful data
-- Regression variance increases for high-frequency users
-
----
-
-##  Future Improvements
-- Advanced cold-start handling for new users
-- Real-time input validation and outlier clipping
-- Model deployment with reduced feature set for faster inference
-
----
-
-##  Author
-Machine Learning Project – Instacart Market Basket Analysis  
-January 2026
+### 2. Mount Google Drive
+If your dataset is stored in Google Drive:
+```python
+from google.colab import drive
+drive.mount('/content/drive')
